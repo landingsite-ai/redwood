@@ -63,10 +63,18 @@ export const parseAuthorizationHeader = (
 ): AuthorizationHeader => {
   const parts = getEventHeader(event, 'Authorization')?.split(' ')
   if (parts?.length !== 2) {
+    console.log(
+      'missing parts on Authorization header, event: ',
+      JSON.stringify(event),
+    )
     throw new Error('The `Authorization` header is not valid.')
   }
   const [schema, token] = parts
   if (!schema.length || !token.length) {
+    console.log(
+      'missing schema or token on Authorization header, event: ',
+      JSON.stringify(event),
+    )
     throw new Error('The `Authorization` header is not valid.')
   }
   return { schema, token }

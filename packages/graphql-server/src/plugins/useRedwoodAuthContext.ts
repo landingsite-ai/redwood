@@ -26,6 +26,10 @@ export const useRedwoodAuthContext = (
           context: requestContext,
         })
       } catch (error: any) {
+        console.error(
+          `Exception in getAuthenticationContext for context`,
+          JSON.stringify(requestContext),
+        )
         throw new Error(
           `Exception in getAuthenticationContext: ${error.message}`,
         )
